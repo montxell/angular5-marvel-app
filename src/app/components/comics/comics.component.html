@@ -1,0 +1,59 @@
+<div class="container-fluid general-margin">
+  <div class="container-fluid title">
+    <div>
+      <h1> Comics </h1>
+    </div>
+  </div>
+
+  <div class="container-fluid">
+    <div class="row">
+
+      <div *ngFor="let comic of comics | paginate: { itemsPerPage: pageSize, currentPage: p, totalItems: total }" class="col-sm-6 col-md-4 col-lg-3 thumbnail-settings">
+        <!-- <div class="thumbnail" style="min-width: 18rem; max-width: 18rem;"> -->
+        <div class="thumbnail hovereffect">
+
+          <!-- PONER IMAGEN COMO BACKGROUND, ENTONCES SE DEBE HACER UNA PIPE DE DOMSECURE SANITIZER PARA LA URL -->
+          <img class="img-fluid img-thumbnail rounded fix" src="{{comic.thumbnail.path}}.{{comic.thumbnail.extension}}" alt="{{comic.title}}">
+
+          <div class="overlay">
+            <a routerLink="/comics/{{comic.id}}" class="info">See details</a>
+
+          </div>
+        </div>
+
+        <div class="caption text-center">
+          <h3>{{comic.title}}</h3>
+        </div>
+      </div>
+    </div>
+
+    <div class="row justify-content-center">
+      <pagination-controls class="my-pagination" (pageChange)="pageComicsChanged($event)"></pagination-controls>
+    </div>
+  </div>
+
+
+
+
+
+</div>
+
+<!-- ORIGINAL CODE -->
+
+<!-- <div class="container-fluid">
+
+      <div class="row card-group">
+        <div *ngFor="let comic of comics" class="col-sm-6 col-md-4 col-lg-3">
+          <div class="card" style="min-width: 18rem; max-width: 18rem;">
+            <img class="card-img-top img-fluid fix" src="{{comic.thumbnail.path}}.{{comic.thumbnail.extension}}" alt="{{comic.title}}">
+            <div class="card-body">
+              <h5 class="card-title">Card title</h5>
+              <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content. This content is
+                a little bit longer.</p>
+              <p class="card-text">
+                <small class="text-muted">Last updated 3 mins ago</small>
+              </p>
+            </div>
+          </div>
+        </div>
+      </div> -->

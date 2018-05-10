@@ -1,0 +1,33 @@
+<div class="container-fluid general-margin">
+  <div class="container-fluid title">
+    <div>
+      <h1> Results for
+        <span class="term-style">{{ term | uppercase }}</span>
+      </h1>
+    </div>
+  </div>
+
+  <div class="container-fluid">
+
+    <div *ngIf="charactersSearchResults != 0">
+      <div class="container main-container detail-list">
+        <div *ngFor="let characterSearched of charactersSearchResults" class="list-group characters-list">
+          <!-- ROUTERLINK CAN ALSO BE WRITTEN AS -->
+          <!-- <a href="#" [routerLink]="['/characters', character.id]"> -->
+          <a routerLink="/characters/{{characterSearched.id}}" class="list-group-item list-group-item-action">{{characterSearched.name}}</a>
+        </div>
+      </div>
+    </div>
+
+    <div *ngIf="charactersSearchResults == 0" class="container-fluid no-results">
+      <div class="text-no-results">
+        <p>
+          <i class="fa fa-thumbs-down fa-5x"></i>
+        </p>
+        <h1>Sorry!</h1>
+        <h1>No results found</h1>
+      </div>
+    </div>
+
+  </div>
+</div>

@@ -1,0 +1,221 @@
+<div *ngIf="comic">
+
+    <div class="container main-container detail">
+        <div class="row">
+            <div class="col-sm-12 col-md-4 col-lg-4 comic-alignment">
+                <div class="comic-image">
+                    <img src="{{comic.thumbnail.path}}.{{comic.thumbnail.extension}}" alt="{{comic.title}}">
+                </div>
+            </div>
+
+            <div class="col-sm-12 col-md-8 col-lg-8">
+
+                <h2>{{ comic.title }}</h2>
+
+                <p *ngIf="comic.description" class="comic-description text-justify">
+                    {{ comic.description}}
+                </p>
+
+                <p *ngIf="!comic.description" class="comic-description">
+                    <span class="badge badge-warning"> Sorry!! No description available</span>
+                </p>
+
+
+                <div>
+                    <p *ngIf="comic.pageCount !== 0" class="total-pages">
+                        <span class="total-pages-title">
+                            Total pages:
+                        </span>
+                        {{ comic.pageCount }}
+                    </p>
+
+                    <p class="total-characters">
+                        <span class="total-characters-title">
+                            Total characters:
+                        </span>
+                        {{ comic.characters.available }}
+                    </p>
+
+                    <p class="total-creators">
+                        <span class="total-creators-title">
+                            Total creators:
+                        </span>
+                        {{ comic.creators.available }}
+                    </p>
+
+                    <div class="buttons-section">
+
+                        <button (click)="goBack()" type="button" class="btn btn-danger">Go Back</button>
+
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+
+
+    <!-- LIST CHARACTERS Y CREATORS **SOLAMENTE SALEN 20, HACER PAGINACION Y ARREGLARLO** -->
+    <div *ngIf="comic.characters.available && comic.creators.available" class="list-margin">
+        <div class="container main-container">
+            <div class="row">
+                <div class="col-sm-12 col-md-6">
+
+                    <div class="container main-container detail-list">
+
+                        <div class="container main-container title-characters-list">
+                            <h2>Characters List</h2>
+                        </div>
+
+                        <div class="container main-container">
+
+                            <table class="table">
+                                <tbody>
+                                    <tr *ngFor="let character of comicCharacters | paginate: { itemsPerPage: pageSize, currentPage: p, totalItems: total }">
+                                        <td class="align-middle avatar-space">
+                                            <img src="{{character.thumbnail.path}}.{{character.thumbnail.extension}}" alt="{{character.name}}" class="avatar">
+                                        </td>
+                                        <td class="align-middle">
+                                            <a routerLink="/characters/{{character.id}}">
+                                                <h6>{{character.name}}</h6>
+                                            </a>
+                                        </td>
+                                    </tr>
+                                    <div *ngIf="comic.characters.available > pageSize" class="row justify-content-center">
+
+                                        <pagination-controls class="my-pagination" (pageChange)="pageComicCharactersChanged($event)"></pagination-controls>
+
+                                    </div>
+                                </tbody>
+                            </table>
+
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-sm-12 col-md-6">
+
+                    <div class="container main-container detail-list">
+
+                        <div class="container main-container title-creators-list">
+                            <h2>Creators List</h2>
+                        </div>
+
+                        <div class="container main-container">
+                            <table class="table">
+                                <tbody>
+                                    <!-- PAGINATION?? PORQUE TENGO comic.creators.items Y NO comicCreators -->
+                                    <tr *ngFor="let creator of comic.creators.items">
+                                        <td class="align-middle">
+                                            <h6>{{creator.name}}</h6>
+                                        </td>
+                                        <td class="align-middle">{{creator.role}}</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- PAGINATION EXAMPLE -->
+
+    <!-- <div class="container main-container title-characters-list">
+            <h2>Characters List</h2>
+        </div>
+        <div class="container main-container">
+            <div class="container main-container detail-list">
+                <div *ngFor="let comic of characterComics | paginate: { itemsPerPage: pageSize, currentPage: p, totalItems: total }" class="list-group comics-list">
+                    <a routerLink="/comics/{{comic.id}}" class="list-group-item list-group-item-action">{{comic.title}}</a>
+                </div>
+                <div *ngIf="character.comics.available > pageSize" class="row justify-content-center">
+
+                    <pagination-controls class="my-pagination" (pageChange)="pageCharacterComicsChanged($event)"></pagination-controls>
+
+                </div>
+            </div>
+        </div> -->
+
+
+    <!-- LIST CHARACTERS **SOLAMENTE SALEN 20, HACER PAGINACION Y ARREGLARLO** -->
+    <div *ngIf="comic.characters.available && !comic.creators.available" class="list-margin">
+        <div class="container main-container">
+            <div class="row">
+                <div class="col-sm-12 col-md-6">
+
+                    <div class="container main-container detail-list">
+
+                        <div class="container main-container title-characters-list">
+                            <h2>Characters List</h2>
+                        </div>
+
+                        <div class="container main-container">
+
+                            <table class="table">
+                                <tbody>
+                                    <tr *ngFor="let character of comicCharacters | paginate: { itemsPerPage: pageSize, currentPage: p, totalItems: total }">
+                                        <td class="align-middle avatar-space">
+                                            <img src="{{character.thumbnail.path}}.{{character.thumbnail.extension}}
+                                            " alt="{{character.name}}" class="avatar">
+                                        </td>
+                                        <td class="align-middle">
+                                            <a routerLink="/characters/{{character.id}}">
+                                                <h6>{{character.name}}</h6>
+                                            </a>
+                                        </td>
+                                    </tr>
+                                    <div *ngIf="comic.characters.available > pageSize" class="row justify-content-center">
+
+                                        <pagination-controls class="my-pagination" (pageChange)="pageComicCharactersChanged($event)"></pagination-controls>
+
+                                    </div>
+                                </tbody>
+                            </table>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- LIST CREATORS **SOLAMENTE SALEN 20, HACER PAGINACION Y ARREGLARLO** -->
+    <div *ngIf="!comic.characters.available && comic.creators.available" class="list-margin">
+        <div class="container main-container">
+            <div class="row">
+                <div class="col-sm-12 col-md-6">
+
+                    <div class="container main-container detail-list">
+
+                        <div class="container main-container title-creators-list">
+                            <h2>Creators List</h2>
+                        </div>
+
+                        <div class="container main-container">
+                            <table class="table">
+                                <tbody>
+                                    <!-- PAGINATION?? PORQUE TENGO comic.creators.items Y NO comicCreators -->
+                                    <tr *ngFor="let creator of comic.creators.items">
+                                        <td class="align-middle creator-name-space">
+                                            <h6>{{creator.name}}</h6>
+                                        </td>
+                                        <td class="align-middle">{{creator.role}}</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>

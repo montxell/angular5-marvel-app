@@ -1,0 +1,28 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo03" aria-controls="navbarTogglerDemo03"
+    aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <img src="/assets/images/marvel-logo.png" width="100" height="40" alt="marvel-logo">
+
+  <div class="collapse navbar-collapse" id="navbarTogglerDemo03">
+    <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+      <li class="nav-item" routerLinkActive="active-link">
+        <a class="nav-link" routerLink="home">Home</a>
+      </li>
+      <li class="nav-item" routerLinkActive="active-link">
+        <!-- <a class="nav-link" routerLink="comics">Comics</a> -->
+        <a class="nav-link" [routerLink]="['/comics']" [queryParams]="{page: '1'}">Comics</a>
+      </li>
+      <li class="nav-item" routerLinkActive="active-link">
+        <!-- <a class="nav-link" routerLink="characters">Characters</a> -->
+        <a class="nav-link" [routerLink]="['/characters']" [queryParams]="{page: '1'}">Characters</a>
+      </li>
+    </ul>
+    <form class="form-inline my-2 my-lg-0">
+      <input class="form-control mr-sm-2" type="search" placeholder="Search character" aria-label="Search" #search>
+      <button class="btn btn-outline-light my-2 my-sm-0" type="submit" (click)="searchCharacter(search.value)">Search</button>
+      <!-- IT DOES THE CLICK AND THEN CLEARS THE INPUT -->
+      <!-- <button class="btn btn-outline-light my-2 my-sm-0" type="submit" (click)="searchCharacter(search.value)"; search.value=''>Search</button> -->
+    </form>
+  </div>

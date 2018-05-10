@@ -1,0 +1,36 @@
+.general-margin {
+  margin-left: 20px;
+  margin-right: 20px;
+  margin-bottom: 100px;
+}
+
+.title,
+.no-results {
+  margin-top: 20px;
+  margin-bottom: 40px;
+}
+
+.term-style {
+  color: #f0141e;
+  font-weight: bold;
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
+.text-no-results {
+  color: gray;
+  font-weight: bold;
+  text-align: center;
+  margin-top: 100px;
+}
+
+.detail-list {
+  padding: 20px;
+  border: 1px solid silver;
+  border-radius: 10px;
+}
+
+.characters-list {
+  margin-top: 15px;
+  margin-bottom: 15px;
+}

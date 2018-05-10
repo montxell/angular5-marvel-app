@@ -1,0 +1,70 @@
+/* div {
+  border: 1px solid red;
+} */
+
+.detail {
+  margin-top: 100px;
+  margin-bottom: 100px;
+  padding: 20px;
+  border: 1px solid silver;
+  border-radius: 10px;
+}
+
+.character-alignment {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.character-image {
+  display: flex;
+  justify-content: center;
+}
+
+.character-image img {
+  width: 250px;
+  height: 250px;
+}
+
+.character-description {
+  margin-top: 20px;
+  margin-bottom: 20px;
+  margin-left: 20px;
+}
+
+.badge {
+  font-size: 16px;
+}
+
+.total-comics-title {
+  font-weight: bold;
+}
+
+.buttons-section {
+  display: flex;
+}
+
+.button-margin {
+  margin-right: 10px;
+}
+
+.title-comics-list {
+  margin-top: 50px;
+  margin-bottom: 20px;
+}
+
+.detail-list {
+  padding: 20px;
+  border: 1px solid silver;
+  border-radius: 10px;
+  background-color: silver;
+}
+
+.comics-list {
+  margin-top: 15px;
+  margin-bottom: 15px;
+}
+
+.my-pagination {
+  margin-top: 20px;
+}

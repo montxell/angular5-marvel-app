@@ -1,0 +1,73 @@
+<div *ngIf="character">
+
+  <div class="container main-container detail">
+    <div class="row">
+      <div class="col-sm-12 col-md-4 col-lg-4 character-alignment">
+        <div class="character-image">
+          <img src="{{character.thumbnail.path}}.{{character.thumbnail.extension}}" alt="{{character.name}}">
+        </div>
+      </div>
+
+      <div class="col-sm-12 col-md-8 col-lg-8">
+
+        <h2>{{ character.name }}</h2>
+
+        <p *ngIf="character.description" class="character-description text-justify">
+          {{ character.description}}
+        </p>
+
+        <p *ngIf="!character.description" class="character-description">
+          <span class="badge badge-warning"> Sorry!! No description available</span>
+        </p>
+
+        <div>
+          <p class="total-comics">
+            <span class="total-comics-title">
+              Total comics:
+            </span>
+            {{ character.comics.available }}
+          </p>
+
+          <div class="buttons-section">
+            <div *ngIf="character.comics.available">
+              <button (click)="showComicsList()" type="button" class="btn btn-info button-margin">
+                <span *ngIf="!isComicsListShown">Show Comics List</span>
+                <span *ngIf="isComicsListShown">Hide Comics List</span>
+              </button>
+            </div>
+
+            <button (click)="goBack()" type="button" class="btn btn-danger">Go Back</button>
+
+          </div>
+
+
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+
+  <!-- COMICS LIST **SOLAMENTE SALEN 20, HACER PAGINACION Y ARREGLARLO** -->
+  <div *ngIf="isComicsListShown">
+    <div class="container main-container title-comics-list">
+      <h2>Comics List</h2>
+    </div>
+    <div class="container main-container">
+      <div class="container main-container detail-list">
+        <div *ngFor="let comic of characterComics | paginate: { itemsPerPage: pageSize, currentPage: p, totalItems: total }" class="list-group comics-list">
+          <!-- ROUTERLINK CAN ALSO BE WRITTEN AS -->
+          <!-- <a href="#" [routerLink]="['/comics', comic.id]"> -->
+          <a routerLink="/comics/{{comic.id}}" class="list-group-item list-group-item-action">{{comic.title}}</a>
+        </div>
+        <div *ngIf="character.comics.available > pageSize" class="row justify-content-center">
+
+          <pagination-controls class="my-pagination" (pageChange)="pageCharacterComicsChanged($event)"></pagination-controls>
+
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+</div>

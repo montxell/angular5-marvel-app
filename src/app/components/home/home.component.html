@@ -1,0 +1,126 @@
+<div class="jumbotron jumbotron-fluid">
+  <div class="container">
+    <h1 class="display-4">Welcome to Marvel Comics Universe</h1>
+    <p class="lead">The place to find all the information about your favorite universe.</p>
+    <p>
+      <small>"Data provided by Marvel. © 2014 Marvel"</small>
+    </p>
+  </div>
+</div>
+
+<div class="container main-container home-detail">
+
+  <div class="container-fluid title">
+
+    <h1> Latest Comics </h1>
+
+  </div>
+
+  <div class="container-fluid">
+    <div class="row">
+      <div *ngFor="let comic of lastWeekComics" class="col-sm-12 col-md-3 col-lg-2">
+        <div class="thumbnail">
+          <img class="img-fluid img-thumbnail rounded fix" src="{{comic.thumbnail.path}}.{{comic.thumbnail.extension}}" alt="{{comic.title}}">
+          <div class="overlay">
+
+            <a routerLink="/comics/{{comic.id}}" class="text-overlay">
+              {{ comic.title }}
+            </a>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- CAROUSEL RANDOM CHARACTERS-->
+
+  <!-- <div class="container-fluid title">
+
+    <h1> Check Out Some Characters </h1>
+
+  </div> -->
+
+  <!-- <div class="container-fluid">
+
+    <div class="row animated fadeIn fast" *ngIf="randomCharacters">
+
+      <div class="col-sm-6">
+
+        <div class="row">
+          <div class="col-md-12 div-pic-1 pointer">
+            <p class="pic-title">
+              {{ randomCharacters[0].name }}
+            </p>
+          </div>
+        </div>
+
+
+        <div class="row">
+          <div class="col-sm-6 div-pic-2 pointer">
+            <p class="pic-title">
+              {{ randomCharacters[1].name }}
+            </p>
+          </div>
+
+          <div class="col-sm-6 div-pic-2 pointer">
+            <p class="pic-title">
+              {{ randomCharacters[2].name }}
+            </p>
+          </div>
+        </div>
+
+      </div>
+
+
+      <div class="col-sm-6">
+
+        <div class="row">
+          <div class="col-sm-6 div-pic-2 pointer">
+            <p class="pic-title">
+              {{ randomCharacters[3].name }}
+            </p>
+          </div>
+
+          <div class="col-sm-6 div-pic-2 pointer">
+            <p class="pic-title">
+              {{ randomCharacters[4].name }}
+            </p>
+          </div>
+        </div>
+
+
+        <div class="row">
+          <div class="col-md-12 div-pic-1 pointer">
+            <p class="pic-title">
+              {{ randomCharacters[5].name}}
+            </p>
+          </div>
+        </div>
+
+      </div>
+
+
+    </div>
+
+  </div> -->
+
+
+
+  <!-- CAROUSEL RANDOM COMICS-->
+
+  <!-- <div class="container-fluid title">
+
+    <h1> Check Out Some Comics </h1>
+
+  </div> -->
+
+  <!-- <div class="container-fluid">
+
+
+
+
+    </div> -->
+
+</div>
